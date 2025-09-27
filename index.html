@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fictional Apartment — Demo / PRANK</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;max-width:900px;margin:32px auto;padding:0 16px;color:#111}
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+    .prank-banner{background:#ffecb3;color:#6a4a00;padding:10px;border-radius:8px;font-weight:700}
+    .card{border:1px solid #eee;padding:18px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,0.04);margin-bottom:16px}
+    .stars{font-size:18px;color:#f5a623}
+    .review{margin-top:12px;padding:10px;border-radius:8px;background:#fafafa}
+    .small{font-size:13px;color:#666}
+    .fake-note{color:#9a031e;font-weight:700}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>5★ Sunset View Apartments — <span class="small">Fictional Demo</span></h1>
+    <div class="prank-banner">PRANK / DEMO — THIS IS NOT A REAL LISTING</div>
+  </header>
+
+  <section class="card">
+    <h2>Cozy Studio with Ocean View</h2>
+    <p class="small">Location: Fictional Bay • Price: $999 / month (fictional)</p>
+    <p>Welcome to the demo listing! This page is a playful, fictional preview to show how a listing and reviews could look. All reviews below are made up for entertainment — do not take them as real.</p>
+    <div class="stars" id="averageStars">★★★★★ (5.0)</div>
+  </section>
+
+  <section class="card">
+    <h3>Guest Reviews (Fictional)</h3>
+    <div id="reviews"></div>
+  </section>
+
+  <section class="card">
+    <h4>Prank tips (safe & fun)</h4>
+    <ul>
+      <li>Make the page obviously fictional — big banner, silly details (e.g., “Includes a unicorn parking spot”).</li>
+      <li>Keep it private or share only with friends and label it “Demo” or “For laughs”.</li>
+      <li>Consider letting friends discover it as part of a game rather than tricking strangers.</li>
+    </ul>
+  </section>
+
+  <footer class="small">Created for demo/prank purposes only — fictional content. Do not impersonate real properties.</footer>
+
+  <script>
+    // Fictional reviews array (all clearly fictional)
+    const reviews = [
+      { name: "A. Spacesuit", rating: 5, text: "Loved the zero-gravity bathtub! (Totally fictional.)" },
+      { name: "B. Banana", rating: 5, text: "Five stars for the rooftop penguin concierge. 10/10 for silliness." },
+      { name: "C. Cat", rating: 4, text: "Cozy. Would recommend to other imaginary creatures." }
+    ];
+
+    const reviewsEl = document.getElementById('reviews');
+    reviews.forEach(r=>{
+      const div = document.createElement('div');
+      div.className = 'review';
+      div.innerHTML = `<strong>${r.name}</strong> — <span class="stars">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</span>
+        <div class="small">${r.text}</div>`;
+      reviewsEl.appendChild(div);
+    });
+
+    // compute average and display
+    const avg = (reviews.reduce((s,r)=>s+r.rating,0)/reviews.length).toFixed(1);
+    document.getElementById('averageStars').textContent = '★★★★★'.slice(0,Math.round(avg)) + ' (' + avg + ')';
+  </script>
+</body>
+</html>
